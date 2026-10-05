@@ -8,27 +8,13 @@ import java.util.Set;
 
 public class ArrayMerge {
     /**
-     * Метод получения массива из только из четныз элементов
+     * Метод получения массива из только из четных элементов
      *
      * @param array - Входящий массив
      * @return - Массив из четных элементов
      */
     public static int[] getEvenArray(int[] array) {
-        int count = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] % 2 == 0) {
-                count++;
-            }
-        }
-        int[] evenArray = new int[count];
-        int index = 0;
-        for (int i = 0; i < array.length && index < count; i++) {
-            if (array[i] % 2 == 0) {
-                evenArray[index] = array[i];
-                index++;
-            }
-        }
-        return evenArray;
+        return Arrays.stream(array).filter(x -> x % 2 == 0).toArray();
     }
 
     /**

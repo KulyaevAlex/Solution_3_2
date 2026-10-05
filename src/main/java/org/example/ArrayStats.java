@@ -12,6 +12,32 @@ public class ArrayStats {
     public static int ARRAY_LENGTH = 8;
 
     /**
+     * Результат поиска минимума и максимума в массиве
+     *
+     * @param min - Минимальное значение в массиве
+     * @param indexMin - Индекс минимального значения
+     * @param max - Максимальное значение в массиве
+     * @param indexMax - Индекс максимального значения
+     */
+    public record MinMaxResult(int min, int indexMin, int max, int indexMax) {}
+
+    /**
+     * Результат определения четных и нечетных значений массива
+     *
+     * @param even - Количество четных значений
+     * @param odd - Количество нечетных значений
+     */
+    public record EvenOddElements(int even, int odd) {}
+
+    /**
+     * Результат определения количества положительных и отрицательных чисел в массиве.
+     *
+     * @param positive - Количество положительных чисел
+     * @param negative - Количество отрицательных чисел
+     */
+    public record PositiveNegativeResult(int positive, int negative) {}
+
+    /**
      * Метод получения суммы массива
      *
      * @param array - Массив чисел типа int
@@ -39,8 +65,9 @@ public class ArrayStats {
      * Метод определения максимума и минимума массива и их индексов
      *
      * @param array - Массив чисел типа int
+     * @return - record из минимального и максимального значения и их индексов
      */
-    public static void minMax(int[] array) {
+    public static MinMaxResult minMax(int[] array) {
         int min = array[0];
         int minIndex = 0;
         int max = array[0];
@@ -55,36 +82,37 @@ public class ArrayStats {
                 maxIndex = i;
             }
         }
-        System.out.println("Максимум: " + max + " Индекс максимума: " + maxIndex);
-        System.out.println("Минимум: " + min + " Индекс минимума: " + minIndex);
+        return new MinMaxResult(min, minIndex, max, maxIndex);
     }
 
     /**
      * Метод определения количества четных и нечетных чисел в массиве
      *
      * @param array - Массив чисел типа int
+     * @return - record из количества четных и нечетных чисел массива
      */
-    public static void getEvenOddCounts(int[] array) {
+    public static EvenOddElements getEvenOddCounts(int[] array) {
         int even = 0, odd = 0;
         for (int value : array) {
             if (value % 2 == 0) even++;
             else odd++;
         }
-        System.out.println("Четных: " + even + ", Нечетных: " + odd);
+        return new EvenOddElements(even, odd);
     }
 
     /**
      * Метод определения количества положительных и отрицательных чисел в массиве
      *
      * @param array - Массив чисел типа int
+     * @return - record из количества положительных и отрицательных чисел массива
      */
-    public static void getPositiveNegativeCounts(int[] array) {
+    public static PositiveNegativeResult getPositiveNegativeCounts(int[] array) {
         int positive = 0, negative = 0;
         for (int value : array) {
             if (value > 0) positive++;
             else if (value < 0) negative++;
         }
-        System.out.println("Положительных: " + positive + ", отрицательных: " + negative);
+        return new PositiveNegativeResult(positive, negative);
     }
 
     public static void main(String[] args) {
@@ -97,9 +125,10 @@ public class ArrayStats {
         System.out.println("Массив: " + Arrays.toString(array));
         System.out.println("Сумма: " + arraySum(array));
         System.out.printf("Среднее: %.2f%n", average(array));
-        minMax(array);
-        getEvenOddCounts(array);
-        getPositiveNegativeCounts(array);
+        System.out.println("Максимум: " + minMax(array).max + " Индекс максимума: " + minMax(array).indexMax);
+        System.out.println("Минимум: " + minMax(array).min + " Индекс минимума: " + minMax(array).indexMin);
+        System.out.println("Четных: " + getEvenOddCounts(array).even + ", Нечетных: " + getEvenOddCounts(array).odd);
+        System.out.println("Положительных: " + getPositiveNegativeCounts(array).positive + ", отрицательных: " + getPositiveNegativeCounts(array).negative);
         sc.close();
     }
 }
