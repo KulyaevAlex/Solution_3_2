@@ -1,7 +1,5 @@
 package org.example;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -14,20 +12,22 @@ public class ArrayStats {
     /**
      * Результат поиска минимума и максимума в массиве
      *
-     * @param min - Минимальное значение в массиве
+     * @param min      - Минимальное значение в массиве
      * @param indexMin - Индекс минимального значения
-     * @param max - Максимальное значение в массиве
+     * @param max      - Максимальное значение в массиве
      * @param indexMax - Индекс максимального значения
      */
-    public record MinMaxResult(int min, int indexMin, int max, int indexMax) {}
+    public record MinMaxResult(int min, int indexMin, int max, int indexMax) {
+    }
 
     /**
      * Результат определения четных и нечетных значений массива
      *
      * @param even - Количество четных значений
-     * @param odd - Количество нечетных значений
+     * @param odd  - Количество нечетных значений
      */
-    public record EvenOddElements(int even, int odd) {}
+    public record EvenOddElements(int even, int odd) {
+    }
 
     /**
      * Результат определения количества положительных и отрицательных чисел в массиве.
@@ -35,7 +35,8 @@ public class ArrayStats {
      * @param positive - Количество положительных чисел
      * @param negative - Количество отрицательных чисел
      */
-    public record PositiveNegativeResult(int positive, int negative) {}
+    public record PositiveNegativeResult(int positive, int negative) {
+    }
 
     /**
      * Метод получения суммы массива

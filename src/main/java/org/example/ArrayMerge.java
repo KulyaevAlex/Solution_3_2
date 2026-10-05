@@ -34,7 +34,9 @@ public class ArrayMerge {
         while (i < lengthArray1 && j < lengthArray2) {
             if (array1[i] <= array2[j]) {
                 mergedArray[k++] = array1[i++];
-            } else {mergedArray[k++] = array2[j++];}
+            } else {
+                mergedArray[k++] = array2[j++];
+            }
         }
         while (i < lengthArray1) {
             mergedArray[k++] = array1[i++];
